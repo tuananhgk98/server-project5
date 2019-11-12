@@ -33,6 +33,7 @@ var mailRoute = require('./routes/mail.route');
 var subscribeRoute = require('./routes/subscribe.route');
 var discountRoute = require('./routes/discount.route');
 var userRoute = require('./routes/user.route');
+var billExportRoute = require('./routes/billExport.route');
 
 
 
@@ -41,6 +42,7 @@ app.use('/mail', mailRoute);
 app.use('/subscribe',subscribeRoute);
 app.use('/discount',discountRoute);
 app.use('/user', userRoute);
+app.use('/billExport', billExportRoute);
 
 
 

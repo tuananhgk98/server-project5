@@ -7,5 +7,7 @@ router.options('/', cors());
 router.post('/signup', cors(), userController.signup);
 router.post('/signin', cors(), userController.signin);
 router.get('/email', cors(), userController.getAllUserEmail);
+router.post('/getProfileByEmail', userController.getUserProfileByEmail);
+router.put('/update', userController.updateUserProfile);
 
 module.exports = router;

@@ -98,3 +98,38 @@ module.exports.getAllUserEmail = function (req, res){
         }
     } );
 };
+
+module.exports.getUserProfileByEmail = function(req, res){
+    users.findOne({ _id : req.body._id }, function (err, data) {
+        if (err) res.send(JSON.stringify(err));
+        res.status(200).send({
+            OK: true,
+            Message: "successfully!",
+            data: data
+        });
+    });
+
+}
+
+
+module.exports.updateUserProfile = function(req, res) {
+
+
+    let data = {
+        "fullName" : req.body.fullName,
+        "phone" : req.body.phone,
+        "birthday" : req.body.birthday,
+        "address" : req.body.address,
+        "avatar" : req.body.avatar  
+    };
+
+    users.findOneAndUpdate({ _id: req.body._id }, data, { new: true }).then(pro => {
+
+        res.status(200).send({
+            OK: true,
+            Message: "Update successfuly!!",
+            data: pro
+        });
+
+    });
+};
