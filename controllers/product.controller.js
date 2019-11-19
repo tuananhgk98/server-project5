@@ -32,7 +32,8 @@ module.exports.updateProduct = function (req, res) {
         "createOn" : req.body.createOn,
         "updateOn" : req.body.updateOn,
         "imageString" : req.body.imageString,
-        "status" : 1
+        "status" : 1,
+      
     };
 
     products.findOneAndUpdate({ _id: req.params.id }, data, { new: true }).then(pro => {
@@ -75,7 +76,8 @@ module.exports.createProduct = function (req, res) {
         "createOn" : req.body.createOn,
         "updateOn" : req.body.updateOn,
         "imageString" : req.body.imageString,
-        "status" : 1
+        "status" : 1,
+        "viewCount" : req.body.viewCount
     };
     products.create(data).then(data => {
         res.status(200).send({
