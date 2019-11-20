@@ -5,6 +5,7 @@ mongoose.Promise = global.Promise;
 
 var billExport = new Schema({
     total : Number,
+    idProduct : Array,
     createOn : String,
     isDone : Boolean
 }, { collection: 'BillExport' });

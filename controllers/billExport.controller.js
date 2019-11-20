@@ -24,6 +24,7 @@ module.exports.getAllBill = function (req, res) {
 module.exports.createBill = function (req, res) {
     let data = {
         "total": req.body.total,
+        "idProduct" : req.body.idProduct,
         "createOn": req.body.createOn,
         "isDone": false
     };
@@ -44,13 +45,10 @@ module.exports.createBill = function (req, res) {
 module.exports.doneOrder = function (req, res) {
 
     let data = {
-        "total" : req.body.toal,
-        "createOn" : req.body.createOn,
         "isDone": true
-
     };
 
-    billExport.updateOne({ _id: req.params.id }, data, { new: true }).then(pro => {
+    billExport.updateOne({ _id: req.params.id }, data, { new: false }).then(pro => {
 
         res.status(200).send({
             OK: true,
@@ -59,15 +57,6 @@ module.exports.doneOrder = function (req, res) {
         });
 
     });
-    // billExport.updateOne(data, { _id: req.params.id }, { runValidators: true }, (err, data) => {
-    //     if(!err){
-    //         res.status(200).send({
-    //             OK: true,
-    //             Message: "Update successfuly!!",
-    //             data: data
-    //         });
-    //     }
 
-    // });
 
 };

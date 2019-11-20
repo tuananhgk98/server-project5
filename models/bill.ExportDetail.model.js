@@ -11,6 +11,7 @@ var billExportDetail = new Schema({
     description : String,
     phone : Number,
     createOn : String,
+    isDone : Boolean
 }, { collection: 'BillExportDetail' });
 
 module.exports = mongoose.model('BillExportDetail', billExportDetail);

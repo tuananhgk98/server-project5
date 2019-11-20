@@ -7,5 +7,6 @@ router.options('/', cors());
 
 router.post('/create', billExportDetailController.createBill);
 router.get('/:id', billExportDetailController.getBillDetailById);
+router.post('/done/:id', billExportDetailController.doneOrder);
 
 module.exports = router;

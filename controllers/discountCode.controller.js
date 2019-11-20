@@ -10,9 +10,9 @@ mongoose.connect('mongodb://localhost:27017/project5', { useNewUrlParser: true }
 module.exports.findCode = function (req, res) {
     discountCode.findOne({ _id: req.body.id }, function (err, data) {
         if (err) return res.status(404).send({
-            OK : false,
-            Message : "error",
-            data : JSON.stringify(err)
+            OK: false,
+            Message: "error",
+            data: JSON.stringify(err)
         });
         res.status(200).send({
             OK: true,
@@ -21,4 +21,15 @@ module.exports.findCode = function (req, res) {
         });
     });
 
+};
+
+module.exports.getAllCode = function (req, res) {
+    discountCode.find(function (err, data) {
+        if (err) return console.log(err);
+        res.status(200).send({
+            OK: true,
+            Message: "Get all Discount Code successfully!!",
+            data: data
+        });
+    });
 };

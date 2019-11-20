@@ -20,13 +20,13 @@ transporter.verify(function (error, success) {
 
 module.exports.sendSubscribeEmail = function (req, res) {
     var email = req.body.mail;
+    var subject = req.body.subject;
     var mailContent = {
         from: 'testnodemailer101161@gmail.com',
         to: `${email}`,
         subject: `Welcome`,
-        text: `Welcome to subscribe bakery cake!!
-        Many Thanks`,
-        html: '<h1>Welcome to subscribe bakery cake!! <br/><h1>Many Thanks</h1></h1>'
+        text: `${subject}`,
+        html: `<h1>${subject}</h1>`
     };
     transporter.sendMail(mailContent, function (error, info) {
         if (error) {

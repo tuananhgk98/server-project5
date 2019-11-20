@@ -6,4 +6,5 @@ router.options('/', cors());
 
 
 router.post('/find', discountCodeController.findCode);
+router.get('/list', discountCodeController.getAllCode);
 module.exports = router;

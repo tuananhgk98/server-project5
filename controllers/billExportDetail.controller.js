@@ -16,7 +16,8 @@ module.exports.createBill = function (req, res) {
         "total" : req.body.total,
         "description" : req.body.description,
         "phone" : req.body.phone,
-        "createOn" : req.body.createOn
+        "createOn" : req.body.createOn,
+        "isDone" : false
     };
     billExportDetail.create(data).then(data => {
         res.status(200).send({
@@ -41,5 +42,23 @@ module.exports.getBillDetailById = function (req, res) {
             data: data
         });
     });
+
+};
+module.exports.doneOrder = function (req, res) {
+
+    let data = {
+        "isDone": true
+    };
+
+    billExportDetail.updateOne({ _id: req.params.id }, data, { new: false }).then(pro => {
+
+        res.status(200).send({
+            OK: true,
+            Message: "Update successfuly!!",
+            data: pro
+        });
+
+    });
+
 
 };

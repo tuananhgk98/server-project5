@@ -25,15 +25,15 @@ module.exports.getAllProduct = function (req, res) {
 module.exports.updateProduct = function (req, res) {
 
     let data = {
-        "name" : req.body.name,
-        "description" : req.body.description,
-        "price" : req.body.price,
-        "quantity" : req.body.quantity,
-        "createOn" : req.body.createOn,
-        "updateOn" : req.body.updateOn,
-        "imageString" : req.body.imageString,
-        "status" : 1,
-      
+        "name": req.body.name,
+        "description": req.body.description,
+        "price": req.body.price,
+        "quantity": req.body.quantity,
+        "createOn": req.body.createOn,
+        "updateOn": req.body.updateOn,
+        "imageString": req.body.imageString,
+        "status": req.body.status,
+
     };
 
     products.findOneAndUpdate({ _id: req.params.id }, data, { new: true }).then(pro => {
@@ -50,34 +50,34 @@ module.exports.updateProduct = function (req, res) {
 
 module.exports.deleteProduct = function (req, res) {
     let query = {
-        "id" : req.body.id
+        "_id": req.body.id
     };
-      products.deleteOne(query).then(function(){
-          res.status(200).send({
-              OK : true,
-              Message : "delete success",
-              data : null
-          });
-      }).catch(function(err){
-          res.status(500).send({
-              OK : false,
-              Message : "err",
-              data : JSON.stringify(err)
-          });
-      });
-  };
+    products.deleteOne(query).then(function () {
+        res.status(200).send({
+            OK: true,
+            Message: "delete success",
+            data: null
+        });
+    }).catch(function (err) {
+        res.status(500).send({
+            OK: false,
+            Message: "err",
+            data: JSON.stringify(err)
+        });
+    });
+};
 
 module.exports.createProduct = function (req, res) {
     let data = {
-        "name" : req.body.name,
-        "description" : req.body.description,
-        "price" : req.body.price,
-        "quantity" : req.body.quantity,
-        "createOn" : req.body.createOn,
-        "updateOn" : req.body.updateOn,
-        "imageString" : req.body.imageString,
-        "status" : 1,
-        "viewCount" : req.body.viewCount
+        "name": req.body.name,
+        "description": req.body.description,
+        "price": req.body.price,
+        "quantity": req.body.quantity,
+        "createOn": req.body.createOn,
+        "updateOn": req.body.updateOn,
+        "imageString": req.body.imageString,
+        "status": 1,
+        "viewCount": req.body.viewCount
     };
     products.create(data).then(data => {
         res.status(200).send({
@@ -86,14 +86,14 @@ module.exports.createProduct = function (req, res) {
             data: data
         });
     }).catch(err => res.status(500).send({
-        OK : false,
-        Message : 'error',
-        data : JSON.stringify(err)
+        OK: false,
+        Message: 'error',
+        data: JSON.stringify(err)
     }));
 };
 
 module.exports.getOneProduct = function (req, res) {
-    products.findOne({ _id: req.body.id }, function (err, data) {
+    products.findOne({ _id: req.params.id }, function (err, data) {
         if (err) res.send(json(err));
         res.status(200).send({
             OK: true,
@@ -104,10 +104,10 @@ module.exports.getOneProduct = function (req, res) {
 
 };
 
-module.exports.increeViewCont = function(req, res){
-   
+module.exports.increeViewCont = function (req, res) {
+
     let data = {
-        "viewCount" : req.body.viewCount
+        "viewCount": req.body.viewCount
     };
     products.findOneAndUpdate({ _id: req.params.id }, data, { new: true }).then(pro => {
 
@@ -119,6 +119,23 @@ module.exports.increeViewCont = function(req, res){
 
     });
 
+};
+
+module.exports.updateQuantity = function (req, res) {
+
+
+    let data = {
+        "quantity": req.body.quantity
+    };
+
+    products.updateOne({ _id: req.body.id }, data, { new: false }).then(pro => {
+        res.status(200).send({
+            OK: true,
+            Message: "Update successfuly!!",
+            data: pro
+        });
+
+    });
 };
 
 
