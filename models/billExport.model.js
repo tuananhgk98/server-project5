@@ -4,9 +4,9 @@ mongoose.Promise = global.Promise;
 
 
 var billExport = new Schema({
-    userId : String,
     total : Number,
-    createOn : String
+    createOn : String,
+    isDone : Boolean
 }, { collection: 'BillExport' });
 
 module.exports = mongoose.model('BillExport', billExport);
